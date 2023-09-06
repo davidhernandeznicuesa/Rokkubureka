@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public float tiempo;
     // Variable que contenga el asteroide
     [SerializeField]
-    private GameObject _asteroide;
+    private GameObject _asteroide; 
 
     void Start()
     {
