@@ -18,6 +18,19 @@ public class Jugador : MonoBehaviour
     //Variable que nos diga que ya puede disparar.
     [SerializeField]
     private float _PuedesDisparar;
+    //Variable de triple disparo.
+    [SerializeField]
+    private bool _TripleDisparo;
+    //Variable de gameObject de prefab triple disparo.
+    [SerializeField]
+    private GameObject _TripleDisparoPrefab;
+
+    //Variable de más velocidad.
+    [SerializeField]
+    private bool _MasVelocidad;
+    //Variable de escudo.
+    [SerializeField]
+    private bool _Escudo;
     private void Start()
     {
         this.transform.position = new Vector3(0, -3f, 0);
@@ -25,6 +38,10 @@ public class Jugador : MonoBehaviour
         //Inicializamos las variables de disparo.
         _EspacioEntreDisparos = 0.25f;
         _PuedesDisparar = 0.0f;
+        //Inicializamos las variables de powerups.
+        _TripleDisparo = false;
+        _MasVelocidad = false;
+        _Escudo = false;
     }    
     void Update()
     {
@@ -33,15 +50,10 @@ public class Jugador : MonoBehaviour
         if(Time.time > _PuedesDisparar)
         {
             //Se coloca la tecla Zeta porque el space se bloquea con las fecha drcha y abajo
-            if (Input.GetKeyDown(KeyCode.Z) || Input.GetMouseButtonDown(0)) 
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
             {
-                //El Debug se utiliza para comprobar si se entra en la línea.
-                //Debug.Log("Hola");
-                //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
-                //se coloque y le pongo rotación a 0.
-                Instantiate (_laserPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
-                //Establecemos el nuevo valor del tiempo de disparo.
-                _PuedesDisparar = Time.time + _EspacioEntreDisparos; 
+                //Llamar a Disparo.
+                Disparo();
             }   
         }
     }
@@ -77,5 +89,30 @@ public class Jugador : MonoBehaviour
         {
             transform.position = new Vector3( -6.6f, transform.position.y, 0);
         }
+    }
+    public void Disparo()
+    {
+        //Si no es triple disparo.
+        if (_TripleDisparo == false)
+        {
+                //El Debug se utiliza para comprobar si se entra en la línea.
+                //Debug.Log("Hola");
+                //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
+                //se coloque y le pongo rotación a 0.
+                Instantiate (_laserPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
+                //Establecemos el nuevo valor del tiempo de disparo.
+                _PuedesDisparar = Time.time + _EspacioEntreDisparos;
+        }
+        else
+        {
+            //Creamos el disparo triple.
+            Instantiate(_TripleDisparoPrefab, this.transform.position, Quaternion.identity);
+        }         
+    }
+    //Creamos el método que activa el triple disparo.
+    public void TripleDisparoPowerupOn()
+    {
+        //Hacemos que el powerup triple disparo se active
+        _TripleDisparo = true;
     }
 }

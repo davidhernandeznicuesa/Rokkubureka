@@ -8,6 +8,7 @@ TagManager:
   - NaveAtaque
   - Laser
   - NaveNodriza
+  - PowerUp
   layers:
   - Default
   - TransparentFX
