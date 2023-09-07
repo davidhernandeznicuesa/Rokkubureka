@@ -9,6 +9,7 @@ public class Jugador : MonoBehaviour
     public float verticalInput;
     //Creación de variable de velocidad. 
     public float velocidad;
+
     //Variable para coger el laser prefab en Unity
     [SerializeField]
     private GameObject _laserPrefab;
@@ -28,9 +29,17 @@ public class Jugador : MonoBehaviour
     //Variable de más velocidad.
     [SerializeField]
     private bool _MasVelocidad;
+    //Variable de gameObject de prefab triple disparo.
+    [SerializeField]
+    private GameObject _VelocidadPrefab;
+
     //Variable de escudo.
     [SerializeField]
     private bool _Escudo;
+    //Variable de gameObject de prefab triple disparo.
+    [SerializeField]
+    private GameObject _EscudoPrefab;
+
     private void Start()
     {
         this.transform.position = new Vector3(0, -3f, 0);
@@ -59,12 +68,21 @@ public class Jugador : MonoBehaviour
     }
     public void Movimiento()
     {
+        if (_MasVelocidad == true)
+        {
+            horizontalInput = Input.GetAxis("Horizontal");
+            this.transform.Translate(Vector3.right * velocidad * 3f * horizontalInput * Time.deltaTime);
+            verticalInput = Input.GetAxis("Vertical");
+            this.transform.Translate(Vector3.up * velocidad * 3f * verticalInput * Time.deltaTime);
+        }
+        else
+        {
         //Cargamos la variable con el eje horizontal.
         horizontalInput = Input.GetAxis("Horizontal");
         //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
         //por la dirección hacia la que va, positiva derecha, negativa izquierda por el
         //tiempo que gestiona la uniformidad del movimiento.
-       this.transform.Translate(Vector3.right*velocidad*horizontalInput*Time.deltaTime);
+       this.transform.Translate(Vector3.right * velocidad * horizontalInput * Time.deltaTime);
         //Cargamos la variable con el eje vertical.
         verticalInput = Input.GetAxis("Vertical");
         //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
@@ -73,6 +91,8 @@ public class Jugador : MonoBehaviour
         this.transform.Translate(Vector3.up * velocidad * verticalInput * Time.deltaTime);
         //Ponemos los límites de arriba y abajo preguntando cada límite por separado y lo reubicamos
         //en la posición de Y y mantenemos en la que esté en X.
+        }
+       
         if (transform.position.y > 1.60f)
         {
             transform.position = new Vector3(transform.position.x, 1.60f, 0);
@@ -106,13 +126,23 @@ public class Jugador : MonoBehaviour
         else
         {
             //Creamos el disparo triple.
-            Instantiate(_TripleDisparoPrefab, this.transform.position, Quaternion.identity);
+            Instantiate(_TripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
         }         
     }
     //Creamos el método que activa el triple disparo.
     public void TripleDisparoPowerupOn()
     {
-        //Hacemos que el powerup triple disparo se active
+        //Hacemos que el powerup triple disparo se active.
         _TripleDisparo = true;
+    }
+    public void SuperVelocidadPowerupOn()
+    {
+        //Hacemos que el powerup super velocidad se active.
+        _MasVelocidad = true;
+    }
+    public void EscudoPowerupOn()
+    {
+        //Hacemos que el powerup escudo se active.
+        _Escudo = true;
     }
 }

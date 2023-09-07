@@ -26,16 +26,34 @@ public class PowerUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Con que colisionamos
-        Debug.Log("Choca con " + collision.name);
+        //Debug.Log("Choca con " + collision.name);
         //Creo un objeto de tipo clase Jugador y obtengo todos los métodos(Componentes).
         Jugador jugador = collision.GetComponent<Jugador>();
         //Preguntamos si jugador no está vacío.
         if(jugador != null)
         {
-            //Mandamos ejecutar en Jugador el método de triple disparo a true.
-            jugador.TripleDisparoPowerupOn();
-
+            //Preguntamos si hemos chocado con el powerup de triple disparo.
+            if(powerUpID == 0)
+            {
+                //Mandamos ejecutar en Jugador el método de triple disparo a true.
+                jugador.TripleDisparoPowerupOn();
+            }
+            //Preguntamos si hemos chocado con el powerup de velocidad.
+            else if (powerUpID == 1)
+            {
+                //Mandamos ejecutar en Jugador el método de triple disparo a true.
+                jugador.SuperVelocidadPowerupOn();
+            }
+            //Preguntamos si hemos chocado con el powerup de escudo.
+            
+            else if (powerUpID == 2)
+            {
+                //Mandamos ejecutar en Jugador el método de triple disparo a true.
+                jugador.EscudoPowerupOn();
+            }
+            
         }
-
+        //Destruimos el powerUp.
+        Destroy(this.gameObject);
     }
 }
