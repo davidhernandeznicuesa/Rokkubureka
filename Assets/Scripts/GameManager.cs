@@ -5,15 +5,25 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public float tiempo;
-    // Variable que contenga el asteroide
+    // Variable que contenga el asteroide.
     [SerializeField]
-    private GameObject _asteroide; 
+    private GameObject _asteroide;
+    //Variable que contenga al jugador.
+    [SerializeField]
+    private GameObject _jugadorPrefab;
+
 
     void Start()
     {
         //Inicio de la corrutina
         StartCoroutine(Asteroides());
         tiempo = 2f;
+        //Creamos el jugador
+        Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
+    }
+    private void Update()
+    {
+        
     }
     // Para controlar el tiempo con la corrutina
     IEnumerator Asteroides()

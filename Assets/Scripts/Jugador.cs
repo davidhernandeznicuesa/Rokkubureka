@@ -9,6 +9,8 @@ public class Jugador : MonoBehaviour
     public float verticalInput;
     //Creación de variable de velocidad. 
     public float velocidad;
+    //Variable de vidas.
+    public int vidas;
 
     //Variable para coger el laser prefab en Unity
     [SerializeField]
@@ -51,6 +53,8 @@ public class Jugador : MonoBehaviour
         _TripleDisparo = false;
         _MasVelocidad = false;
         _Escudo = false;
+        //Pongo el número de vidas.
+        vidas = 3;
     }    
     void Update()
     {
@@ -144,5 +148,28 @@ public class Jugador : MonoBehaviour
     {
         //Hacemos que el powerup escudo se active.
         _Escudo = true;
+        //Activamos que sea visible el escudo.
+        _EscudoPrefab.SetActive(true);
+    }
+    //Método para quitar las vidas.
+    public void Damage()
+    {
+        //Preguntamos si el escudo está activado.
+        if (_Escudo == true)
+        {
+            //Desactivamos el escudo.
+            _Escudo = false;
+            //Dejamos de ver el escudo.
+            _EscudoPrefab.SetActive(false);
+        }
+        //Quitamos una vida.
+        vidas--;
+        //Destruimos la nave.
+        Destroy(this.gameObject);
+        if (vidas < 1)
+        {
+
+           
+        }
     }
 }

@@ -373,7 +373,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &975047296
 GameObject:
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tiempo: 0
   _asteroide: {fileID: 2627702058647342924, guid: 3bcb0728ce9fb1847881375cca80d009, type: 3}
+  _jugadorPrefab: {fileID: 4507819373184704638, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
 --- !u!4 &975047298
 Transform:
   m_ObjectHideFlags: 0
@@ -419,81 +420,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4507819374249396940
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704632, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4507819373184704633, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: _laserPrefab
-      value: 
-      objectReference: {fileID: 3718178031348413362, guid: 20cf86af4dd5fc34a8ffc526ff2ea190, type: 3}
-    - target: {fileID: 4507819373184704633, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: _EscudoPrefab
-      value: 
-      objectReference: {fileID: 8229495939122800065, guid: 68e91d2e82bfdc24c9fdd9302ce07007, type: 3}
-    - target: {fileID: 4507819373184704633, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: _VelocidadPrefab
-      value: 
-      objectReference: {fileID: 2342904746995687752, guid: bbb143ab6366942419858df6bbd26488, type: 3}
-    - target: {fileID: 4507819373184704633, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: _TripleDisparoPrefab
-      value: 
-      objectReference: {fileID: 7666103650111045691, guid: 150577b838dd5134d805311f7b218fc6, type: 3}
-    - target: {fileID: 4507819373184704638, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
-      propertyPath: m_Name
-      value: Jugador
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
 --- !u!1001 &7014676631260251895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,11 +435,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6835874756913123728, guid: bbb143ab6366942419858df6bbd26488, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6835874756913123728, guid: bbb143ab6366942419858df6bbd26488, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.75
+      value: -2.97
       objectReference: {fileID: 0}
     - target: {fileID: 6835874756913123728, guid: bbb143ab6366942419858df6bbd26488, type: 3}
       propertyPath: m_LocalPosition.y
@@ -560,11 +488,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7276291738995889385, guid: 6bf6a5e627603a648ac93d02c029e690, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7276291738995889385, guid: 6bf6a5e627603a648ac93d02c029e690, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.28
+      value: -4.52
       objectReference: {fileID: 0}
     - target: {fileID: 7276291738995889385, guid: 6bf6a5e627603a648ac93d02c029e690, type: 3}
       propertyPath: m_LocalPosition.y
@@ -621,11 +549,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8276816786010089039, guid: 68e91d2e82bfdc24c9fdd9302ce07007, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8276816786010089039, guid: 68e91d2e82bfdc24c9fdd9302ce07007, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.8
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 8276816786010089039, guid: 68e91d2e82bfdc24c9fdd9302ce07007, type: 3}
       propertyPath: m_LocalPosition.y
