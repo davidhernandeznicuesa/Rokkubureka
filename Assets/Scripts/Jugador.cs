@@ -161,6 +161,8 @@ public class Jugador : MonoBehaviour
             _Escudo = false;
             //Dejamos de ver el escudo.
             _EscudoPrefab.SetActive(false);
+            //Termino el método.
+            return;
         }
         //Quitamos una vida.
         vidas--;
