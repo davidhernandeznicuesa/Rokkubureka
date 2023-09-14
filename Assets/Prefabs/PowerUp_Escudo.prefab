@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 7757441778435496362}
   - component: {fileID: 8854835209158774264}
   - component: {fileID: 7401039207555473863}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PowerUp_Escudo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8276816786010089039
 Transform:
   m_ObjectHideFlags: 0

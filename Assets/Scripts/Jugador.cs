@@ -10,7 +10,7 @@ public class Jugador : MonoBehaviour
     //Creación de variable de velocidad. 
     public float velocidad;
     //Variable de vidas.
-    public int vidas;
+    public int vidas ;
 
     //Variable para coger el laser prefab en Unity
     [SerializeField]
@@ -31,16 +31,19 @@ public class Jugador : MonoBehaviour
     //Variable de más velocidad.
     [SerializeField]
     private bool _MasVelocidad;
-    //Variable de gameObject de prefab triple disparo.
-    [SerializeField]
-    private GameObject _VelocidadPrefab;
+    
 
     //Variable de escudo.
     [SerializeField]
     private bool _Escudo;
-    //Variable de gameObject de prefab triple disparo.
+    ////Variable de gameObject de prefab triple disparo.
     [SerializeField]
     private GameObject _EscudoPrefab;
+
+    //Variable de gameObject para coger métodos.
+    private GameManager _gameManager;
+
+    
 
     private void Start()
     {
@@ -55,6 +58,8 @@ public class Jugador : MonoBehaviour
         _Escudo = false;
         //Pongo el número de vidas.
         vidas = 3;
+        //Cargo la clase de GameManager
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }    
     void Update()
     {
@@ -166,12 +171,17 @@ public class Jugador : MonoBehaviour
         }
         //Quitamos una vida.
         vidas--;
-        //Destruimos la nave.
-        Destroy(this.gameObject);
+        
+         
+        //Vuelvo a estar en juego para crear una nueva vida.
+        _gameManager.game = true;
+        //Preguntamos si quedan vidas.
         if (vidas < 1)
         {
+            //Destruimos la nave.
+            Destroy(this.gameObject);
 
-           
         }
+       
     }
 }

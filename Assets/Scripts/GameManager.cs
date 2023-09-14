@@ -8,22 +8,41 @@ public class GameManager : MonoBehaviour
     // Variable que contenga el asteroide.
     [SerializeField]
     private GameObject _asteroide;
-    //Variable que contenga al jugador.
+
+    //Variable de tipo Array que contenga los powerUps.
+    [SerializeField]
+    private GameObject[] _powerUps;
+
     [SerializeField]
     private GameObject _jugadorPrefab;
-
+    //Variable se han acabado las vidas.
+    public bool game;
 
     void Start()
     {
         //Inicio de la corrutina
         StartCoroutine(Asteroides());
+        StartCoroutine(PowerUp());
         tiempo = 2f;
-        //Creamos el jugador
-        Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
+        //Variable de si jugamos o no.
+        game = true;
     }
     private void Update()
     {
-        
+        //Preguntamos si estamos jugando.
+        if (game == true)
+        {
+            //Si presione la tecla Espacio creo una nueva nave.
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                //Creamos el jugador
+                Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
+                //La vida se está utilizando y no cree una nueva vida
+                game = false;
+            }
+           
+        }
     }
     // Para controlar el tiempo con la corrutina
     IEnumerator Asteroides()
@@ -35,6 +54,18 @@ public class GameManager : MonoBehaviour
             Instantiate(_asteroide, new Vector3(Random.Range(-6.3f,6.3f), 5.8f, 0), Quaternion.identity);
             //Darle el tiempo entre uno y otro asteroide.
             yield return new WaitForSeconds(tiempo);
+        }
+    }
+    // Para controlar el tiempo con la corrutina
+    IEnumerator PowerUp()
+    {
+        //Creo un bucle que va a ir creando los asteroides.
+        while (true)
+        {
+            //Creo el asteroide.
+            Instantiate(_powerUps[Random.Range(0,3)], new Vector3(Random.Range(-6.3f, 6.3f), 5.8f, 0), Quaternion.identity);
+            //Darle el tiempo entre uno y otro asteroide.
+            yield return new WaitForSeconds(5f);
         }
     }
 }
