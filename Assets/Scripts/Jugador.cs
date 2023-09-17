@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class Jugador : MonoBehaviour
@@ -36,9 +36,10 @@ public class Jugador : MonoBehaviour
     //Variable de escudo.
     [SerializeField]
     private bool _Escudo;
-    ////Variable de gameObject de prefab triple disparo.
+    //Variable de gameObject de prefab triple disparo.
     [SerializeField]
     private GameObject _EscudoPrefab;
+    //TODO el no mostrar el escudo era porque no le había puesto el escudo hijo del jugador de dentro del prefab.
 
     //Variable de gameObject para coger métodos.
     private GameManager _gameManager;
@@ -77,27 +78,27 @@ public class Jugador : MonoBehaviour
     }
     public void Movimiento()
     {
+        //TODO Cargamos la variable con el eje horizontal.
+        horizontalInput = Input.GetAxis("Horizontal");
+        //Cargamos la variable con el eje vertical.
+        verticalInput = Input.GetAxis("Vertical");
+
         if (_MasVelocidad == true)
         {
-            horizontalInput = Input.GetAxis("Horizontal");
+            //TODO Multiplicamos por la supervelocidad.
             this.transform.Translate(Vector3.right * velocidad * 3f * horizontalInput * Time.deltaTime);
-            verticalInput = Input.GetAxis("Vertical");
             this.transform.Translate(Vector3.up * velocidad * 3f * verticalInput * Time.deltaTime);
         }
         else
         {
-        //Cargamos la variable con el eje horizontal.
-        horizontalInput = Input.GetAxis("Horizontal");
-        //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
-        //por la dirección hacia la que va, positiva derecha, negativa izquierda por el
-        //tiempo que gestiona la uniformidad del movimiento.
-       this.transform.Translate(Vector3.right * velocidad * horizontalInput * Time.deltaTime);
-        //Cargamos la variable con el eje vertical.
-        verticalInput = Input.GetAxis("Vertical");
-        //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
-        //por la dirección hacia la que va, positiva derecha, negativa izquierda por el
-        //tiempo que gestiona la uniformidad del movimiento.
-        this.transform.Translate(Vector3.up * velocidad * verticalInput * Time.deltaTime);
+            //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
+            //por la dirección hacia la que va, positiva derecha, negativa izquierda por el
+            //tiempo que gestiona la uniformidad del movimiento.
+            this.transform.Translate(Vector3.right * velocidad * horizontalInput * Time.deltaTime);
+            //Le decimos que se traslade hacia la derecha por la velocidad que va a desplazarse
+            //por la dirección hacia la que va, positiva derecha, negativa izquierda por el
+            //tiempo que gestiona la uniformidad del movimiento.
+            this.transform.Translate(Vector3.up * velocidad * verticalInput * Time.deltaTime);
         //Ponemos los límites de arriba y abajo preguntando cada límite por separado y lo reubicamos
         //en la posición de Y y mantenemos en la que esté en X.
         }
@@ -121,22 +122,24 @@ public class Jugador : MonoBehaviour
     }
     public void Disparo()
     {
-        //Si no es triple disparo.
-        if (_TripleDisparo == false)
+        //TODO Preguntamos si podemos disparar.
+        if (Time.time > _PuedesDisparar)
         {
-                //El Debug se utiliza para comprobar si se entra en la línea.
-                //Debug.Log("Hola");
+             //Si no es triple disparo.
+            if (_TripleDisparo == false)
+            {
                 //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
                 //se coloque y le pongo rotación a 0.
                 Instantiate (_laserPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
-                //Establecemos el nuevo valor del tiempo de disparo.
+            }
+            else
+            {
+                //Creamos el disparo triple.
+                Instantiate(_TripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
+            }     
+            //TODO Establecemos el nuevo valor del tiempo de disparo.
                 _PuedesDisparar = Time.time + _EspacioEntreDisparos;
         }
-        else
-        {
-            //Creamos el disparo triple.
-            Instantiate(_TripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
-        }         
     }
     //Creamos el método que activa el triple disparo.
     public void TripleDisparoPowerupOn()
@@ -171,17 +174,15 @@ public class Jugador : MonoBehaviour
         }
         //Quitamos una vida.
         vidas--;
-        
-         
-        //Vuelvo a estar en juego para crear una nueva vida.
-        _gameManager.game = true;
+     
         //Preguntamos si quedan vidas.
         if (vidas < 1)
         {
+            //TODO lo meto en el if para no crear nuevas vidas.
+            //Vuelvo a estar en juego para crear una nueva vida.
+        _gameManager.game = true;
             //Destruimos la nave.
             Destroy(this.gameObject);
-
         }
-       
     }
 }

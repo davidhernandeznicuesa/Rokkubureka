@@ -111,7 +111,7 @@ MonoBehaviour:
   _TripleDisparoPrefab: {fileID: 7666103650111045691, guid: 150577b838dd5134d805311f7b218fc6, type: 3}
   _MasVelocidad: 0
   _Escudo: 0
-  _EscudoPrefab: {fileID: 5156126348279148569, guid: f127094babd717647a4f9d59713ec2b6, type: 3}
+  _EscudoPrefab: {fileID: 7558365441438312947}
 --- !u!50 &5822183579096793799
 Rigidbody2D:
   serializedVersion: 4
@@ -169,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1374787216154459618}
   - component: {fileID: 2387218969489487271}
+  - component: {fileID: 117564142531886448}
   m_Layer: 2
   m_Name: Escudo
   m_TagString: Untagged
@@ -243,3 +244,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &117564142531886448
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558365441438312947}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2d7f9e393fdfdcc4188c09d00ffd5ff2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

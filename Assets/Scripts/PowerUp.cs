@@ -22,6 +22,11 @@ public class PowerUp : MonoBehaviour
     {
         //Baje el powerUp.
         this.transform.Translate(Vector3.down * _speed * Time.deltaTime);
+        //TODO si baja de la base de la nave se destruye.
+        if (this.gameObject.transform.position.y < -5f)
+        {
+            Destroy(this.gameObject);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,10 +53,10 @@ public class PowerUp : MonoBehaviour
             
             else if (powerUpID == 2)
             {
+                //TODO la animación se hace al sprite hijo en el prefab del jugador.
                 //Mandamos ejecutar en Jugador el método de triple disparo a true.
                 jugador.EscudoPowerupOn();
             }
-            
         }
         //Destruimos el powerUp.
         Destroy(this.gameObject);

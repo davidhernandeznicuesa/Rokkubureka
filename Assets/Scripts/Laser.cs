@@ -23,6 +23,7 @@ public class Laser : MonoBehaviour
         {
             //Destruyo el laser cuando se sale de la pantalla.
             Destroy(gameObject);
+            //TODO hay que poner este script en el prefab de triple laser para que se destruya de la jerarquía.
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
