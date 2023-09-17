@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     //Variable se han acabado las vidas.
     public bool game;
 
+    //TODO1 Variable de acceso a UIManager
+
     void Start()
     {
         //Inicio de la corrutina
@@ -26,6 +28,8 @@ public class GameManager : MonoBehaviour
         tiempo = 2f;
         //Variable de si jugamos o no.
         game = true;
+        
+        //TODO1 Cargo el componente UIManager de la clase UIManager.
     }
     private void Update()
     {
@@ -35,13 +39,14 @@ public class GameManager : MonoBehaviour
             //Si presione la tecla Espacio creo una nueva nave.
             if (Input.GetKeyDown(KeyCode.Space))
             {
-
                 //Creamos el jugador
                 Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
                 //La vida se está utilizando y no cree una nueva vida
                 game = false;
+
+                //TODO1 Llamamos a la función que nos oculta el panel de inicio de jugador.
             }
-           
+
         }
     }
     // Para controlar el tiempo con la corrutina

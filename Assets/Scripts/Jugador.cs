@@ -44,7 +44,7 @@ public class Jugador : MonoBehaviour
     //Variable de gameObject para coger métodos.
     private GameManager _gameManager;
 
-    
+    //TODO1 Creo una variable de UIManager para acceder a ella.
 
     private void Start()
     {
@@ -61,6 +61,8 @@ public class Jugador : MonoBehaviour
         vidas = 3;
         //Cargo la clase de GameManager
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        //TODO1 Cargo UIManager y pregunto si está. y llamamos al método de UImanager para mandarle las vidas
     }    
     void Update()
     {

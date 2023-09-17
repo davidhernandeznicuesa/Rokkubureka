@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//TODO1 Ejercicio, hacer que se sumen los puntos.
+
 public class Asteroide : MonoBehaviour
 {
     //Velocidad del asteroide.
