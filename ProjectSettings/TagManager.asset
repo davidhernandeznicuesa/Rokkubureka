@@ -52,3 +52,6 @@ TagManager:
   - name: nave_nodriza
     uniqueID: 354255521
     locked: 0
+  - name: canvas
+    uniqueID: 3593708737
+    locked: 0
