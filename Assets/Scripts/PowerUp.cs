@@ -53,7 +53,9 @@ public class PowerUp : MonoBehaviour
             
             else if (powerUpID == 2)
             {
-                //TODO la animación se hace al sprite hijo en el prefab del jugador.
+                //La animación se hace al sprite hijo en el prefab del jugador.
+                //En el prefab de jugador se añade como gameobject el hijo.
+                //Para mostrar el sprite hijo o animación, tenemos que modificarlo a activo.
                 //Mandamos ejecutar en Jugador el método de triple disparo a true.
                 jugador.EscudoPowerupOn();
             }

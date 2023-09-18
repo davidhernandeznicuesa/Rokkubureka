@@ -33,12 +33,12 @@ public class Jugador : MonoBehaviour
     private bool _MasVelocidad;
     
 
-    //Variable de escudo.
+    ////Variable de escudo.
     [SerializeField]
-    private bool _Escudo;
-    //Variable de gameObject de prefab triple disparo.
+    private bool _escudo;
+    ////Variable de gameObject de prefab triple disparo.
     [SerializeField]
-    private GameObject _EscudoPrefab;
+    private GameObject _escudoHijo;
     //TODO el no mostrar el escudo era porque no le había puesto el escudo hijo del jugador de dentro del prefab.
 
     //Variable de gameObject para coger métodos.
@@ -56,7 +56,7 @@ public class Jugador : MonoBehaviour
         //Inicializamos las variables de powerups.
         _TripleDisparo = false;
         _MasVelocidad = false;
-        _Escudo = false;
+        _escudo = false;
         //Pongo el número de vidas.
         vidas = 3;
         //Cargo la clase de GameManager
@@ -80,14 +80,14 @@ public class Jugador : MonoBehaviour
     }
     public void Movimiento()
     {
-        //TODO Cargamos la variable con el eje horizontal.
+        //Cargamos la variable con el eje horizontal.
         horizontalInput = Input.GetAxis("Horizontal");
         //Cargamos la variable con el eje vertical.
         verticalInput = Input.GetAxis("Vertical");
 
         if (_MasVelocidad == true)
         {
-            //TODO Multiplicamos por la supervelocidad.
+            //Multiplicamos por la supervelocidad.
             this.transform.Translate(Vector3.right * velocidad * 3f * horizontalInput * Time.deltaTime);
             this.transform.Translate(Vector3.up * velocidad * 3f * verticalInput * Time.deltaTime);
         }
@@ -124,7 +124,7 @@ public class Jugador : MonoBehaviour
     }
     public void Disparo()
     {
-        //TODO Preguntamos si podemos disparar.
+        //Preguntamos si podemos disparar.
         if (Time.time > _PuedesDisparar)
         {
              //Si no es triple disparo.
@@ -139,7 +139,7 @@ public class Jugador : MonoBehaviour
                 //Creamos el disparo triple.
                 Instantiate(_TripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
             }     
-            //TODO Establecemos el nuevo valor del tiempo de disparo.
+            //Establecemos el nuevo valor del tiempo de disparo.
                 _PuedesDisparar = Time.time + _EspacioEntreDisparos;
         }
     }
@@ -157,20 +157,20 @@ public class Jugador : MonoBehaviour
     public void EscudoPowerupOn()
     {
         //Hacemos que el powerup escudo se active.
-        _Escudo = true;
+        _escudo = true;
         //Activamos que sea visible el escudo.
-        _EscudoPrefab.SetActive(true);
+        _escudoHijo.SetActive(true);
     }
     //Método para quitar las vidas.
     public void Damage()
     {
         //Preguntamos si el escudo está activado.
-        if (_Escudo == true)
+        if (_escudo == true)
         {
             //Desactivamos el escudo.
-            _Escudo = false;
+            _escudo = false;
             //Dejamos de ver el escudo.
-            _EscudoPrefab.SetActive(false);
+            _escudoHijo.SetActive(false);
             //Termino el método.
             return;
         }
@@ -180,7 +180,6 @@ public class Jugador : MonoBehaviour
         //Preguntamos si quedan vidas.
         if (vidas < 1)
         {
-            //TODO lo meto en el if para no crear nuevas vidas.
             //Vuelvo a estar en juego para crear una nueva vida.
         _gameManager.game = true;
             //Destruimos la nave.
