@@ -39,12 +39,13 @@ public class Jugador : MonoBehaviour
     ////Variable de gameObject de prefab triple disparo.
     [SerializeField]
     private GameObject _escudoHijo;
-    //TODO el no mostrar el escudo era porque no le había puesto el escudo hijo del jugador de dentro del prefab.
+    //El no mostrar el escudo era porque no le había puesto el escudo hijo del jugador de dentro del prefab.
 
     //Variable de gameObject para coger métodos.
     private GameManager _gameManager;
 
-    //TODO1 Creo una variable de UIManager para acceder a ella.
+    //Creo una variable de UIManager para acceder a ella.
+    private UIManager _uiManager;
 
     private void Start()
     {
@@ -62,7 +63,14 @@ public class Jugador : MonoBehaviour
         //Cargo la clase de GameManager
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
-        //TODO1 Cargo UIManager y pregunto si está. y llamamos al método de UImanager para mandarle las vidas
+        //Cargo UIManager y pregunto si está.  
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        ////Preguntamos si se ha cargado los componentes.
+        if (_uiManager != null)
+        {
+            //llamamos al método de UImanager para mandarle las vidas
+            _uiManager.UpdateVidas(vidas);
+        }
     }    
     void Update()
     {
@@ -176,12 +184,13 @@ public class Jugador : MonoBehaviour
         }
         //Quitamos una vida.
         vidas--;
-     
+        //Llamo al método de UpdateVidas y le mando las vidas que quedan.
+        _uiManager.UpdateVidas(vidas);
         //Preguntamos si quedan vidas.
         if (vidas < 1)
         {
             //Vuelvo a estar en juego para crear una nueva vida.
-        _gameManager.game = true;
+            _gameManager.game = true;
             //Destruimos la nave.
             Destroy(this.gameObject);
         }
