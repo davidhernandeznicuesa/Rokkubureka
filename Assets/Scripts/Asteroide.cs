@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//TODO1 Ejercicio, hacer que se sumen los puntos.
 
 public class Asteroide : MonoBehaviour
 {
     //Velocidad del asteroide.
     [SerializeField]
     private float _velocidad;
+    //Variable para cargar el UIManager.
+    private UIManager _uiManager;
+
     void Start()
     {
         //Inicializamos el asteroide.
         _velocidad = 2.0f;
+        //Cargamos los componentes del UIManager
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     // Update is called once per frame
@@ -35,6 +39,12 @@ public class Asteroide : MonoBehaviour
         {
             //Destruimos el asteroide
             Destroy(this.gameObject);
+            //Comprobar si ha cargado el uiManager.
+            if (_uiManager != null)
+            {
+                //Llamo al método de actualizar los puntos.
+                _uiManager.UpdatePuntos();
+            }
         }
         //Si chocamos con el jugador
         else if(collision.tag == "NaveAtaque")

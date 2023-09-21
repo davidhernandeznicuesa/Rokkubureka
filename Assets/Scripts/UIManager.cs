@@ -16,22 +16,15 @@ public class UIManager : MonoBehaviour
     //Variable de tipo imagen y cargo la imagen en Unity.
     [SerializeField]
     private Image _imagenQueQueda;
-
-
-
-//TODO1
-    //En Unity crear text y anclamos
-
-    //public Text puntos;
-    //TODO1
-    
-
-    //Método de actualizar las vidas pasando las que quedan por parametros.
-
-    //Método para actualizar los puntos.
-    //Método para mostrar la pantalla.
-    //Método para ocultar la pantalla.
-
+    //Variable para meter el texto del Canvas
+    //Utilizar el Text de Legacy.
+    [SerializeField]
+    private Text _puntosText;
+    //Variable de puntos
+    public int puntos;
+    //Varible tipo imagen para el titulo.
+    [SerializeField]
+    private GameObject _titulo;
 
     // Start is called before the first frame update
     void Start()
@@ -49,5 +42,24 @@ public class UIManager : MonoBehaviour
         //Seleccionamos la imagen que se va a mostrar del array con el número de las vidas que nos trae.
         //Y lo cargamos en la imagen del canvas.
         _imagenQueQueda.sprite = vidas[vidasQuedan];
+    }
+    //Método para actualizar los puntos.
+    public void UpdatePuntos() 
+    {
+        //Sumar puntos.
+        puntos += 10;
+        //Comprobar si hemos cargado el UIManager.
+        if (_puntosText != null)
+        {
+            //Mostrar los puntos en el canvas.
+            _puntosText.text = "Puntos: " + puntos;
+        }
+    }
+    //Método para mostrar la pantalla.
+
+    //Método para ocultar la pantalla.
+    public void OcultarTitulo()
+    {
+       // _titulo.SetActive(true);
     }
 }
