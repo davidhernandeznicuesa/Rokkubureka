@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             {
                 //Creamos el jugador
                 Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
+                
                 //La vida se está utilizando y no cree una nueva vida
                 game = false;
 

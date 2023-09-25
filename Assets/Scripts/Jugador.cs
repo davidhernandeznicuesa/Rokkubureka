@@ -17,21 +17,25 @@ public class Jugador : MonoBehaviour
     private GameObject _laserPrefab;
     //Variable de tiempo entre disparos
     [SerializeField]
-    private float _EspacioEntreDisparos;
+    private float _espacioEntreDisparos;
     //Variable que nos diga que ya puede disparar.
     [SerializeField]
-    private float _PuedesDisparar;
+    private float _puedesDisparar;
     //Variable de triple disparo.
     [SerializeField]
-    private bool _TripleDisparo;
+    private bool _tripleDisparo;
     //Variable de gameObject de prefab triple disparo.
     [SerializeField]
-    private GameObject _TripleDisparoPrefab;
+    private GameObject _tripleDisparoPrefab;
 
     //Variable de más velocidad.
     [SerializeField]
     private bool _MasVelocidad;
-    
+
+    //Variable para prefab de la explosion
+    [SerializeField]
+    private GameObject _naveExplosion;
+
 
     ////Variable de escudo.
     [SerializeField]
@@ -52,10 +56,10 @@ public class Jugador : MonoBehaviour
         this.transform.position = new Vector3(0, -3f, 0);
         velocidad = 5f;
         //Inicializamos las variables de disparo.
-        _EspacioEntreDisparos = 0.25f;
-        _PuedesDisparar = 0.0f;
+        _espacioEntreDisparos = 0.25f;
+        _puedesDisparar = 0.0f;
         //Inicializamos las variables de powerups.
-        _TripleDisparo = false;
+        _tripleDisparo = false;
         _MasVelocidad = false;
         _escudo = false;
         //Pongo el número de vidas.
@@ -76,7 +80,7 @@ public class Jugador : MonoBehaviour
     {
         Movimiento();
         //Preguntamos si podemos disparar.
-        if(Time.time > _PuedesDisparar)
+        if(Time.time > _puedesDisparar)
         {
             //Se coloca la tecla Zeta porque el space se bloquea con las fecha drcha y abajo
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
@@ -133,10 +137,10 @@ public class Jugador : MonoBehaviour
     public void Disparo()
     {
         //Preguntamos si podemos disparar.
-        if (Time.time > _PuedesDisparar)
+        if (Time.time > _puedesDisparar)
         {
              //Si no es triple disparo.
-            if (_TripleDisparo == false)
+            if (_tripleDisparo == false)
             {
                 //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
                 //se coloque y le pongo rotación a 0.
@@ -145,29 +149,62 @@ public class Jugador : MonoBehaviour
             else
             {
                 //Creamos el disparo triple.
-                Instantiate(_TripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
+                Instantiate(_tripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
             }     
             //Establecemos el nuevo valor del tiempo de disparo.
-                _PuedesDisparar = Time.time + _EspacioEntreDisparos;
+                _puedesDisparar = Time.time + _espacioEntreDisparos;
         }
     }
     //Creamos el método que activa el triple disparo.
     public void TripleDisparoPowerupOn()
     {
         //Hacemos que el powerup triple disparo se active.
-        _TripleDisparo = true;
+        _tripleDisparo = true;
+//TODO Llamamos a la coroutine y la inicializamos.
+        StartCoroutine(TripleshotPowerRoutine());
+    }
+//TODO Tiempo de espera del triple disparo.
+    public IEnumerator TripleshotPowerRoutine()
+    {
+        //Establece el nuevo tempo de espera.
+        yield return new WaitForSeconds(5.0f);
+        //Desactivamos el powerup.
+        _tripleDisparo = false;
     }
     public void SuperVelocidadPowerupOn()
     {
         //Hacemos que el powerup super velocidad se active.
         _MasVelocidad = true;
+//TODO Llamamos a la coroutine y la inicializamos.
+        StartCoroutine(SuperVelocidadPowerRoutine());
     }
+    //TODO Tiempo de espera del triple disparo.
+    public IEnumerator SuperVelocidadPowerRoutine()
+    {
+        //Establece el nuevo tempo de espera.
+        yield return new WaitForSeconds(5.0f);
+        //Desactivamos el powerup.
+        _MasVelocidad = false;
+    }
+
     public void EscudoPowerupOn()
     {
         //Hacemos que el powerup escudo se active.
         _escudo = true;
         //Activamos que sea visible el escudo.
         _escudoHijo.SetActive(true);
+        //TODO Llamamos a la coroutine y la inicializamos.
+        StartCoroutine(EscudoPowerRoutine());
+    }
+    //TODO Tiempo de espera del triple disparo.
+    public IEnumerator EscudoPowerRoutine()
+    {
+        //Establece el nuevo tempo de espera.
+        yield return new WaitForSeconds(5.0f);
+        //Desactivamos el powerup.
+        _escudo = false;
+        //Desactivamos que sea visible el escudo.
+        _escudoHijo.SetActive(false);
     }
     //Método para quitar las vidas.
     public void Damage()
@@ -191,8 +228,11 @@ public class Jugador : MonoBehaviour
         {
             //Vuelvo a estar en juego para crear una nueva vida.
             _gameManager.game = true;
+            //Creamos la explosión.
+            Instantiate(_naveExplosion, transform.position, Quaternion.identity);
             //Destruimos la nave.
             Destroy(this.gameObject);
+            
         }
     }
 }

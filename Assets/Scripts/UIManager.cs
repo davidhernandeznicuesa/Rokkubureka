@@ -56,10 +56,15 @@ public class UIManager : MonoBehaviour
         }
     }
     //Método para mostrar la pantalla.
-
+    public void MostrarTitulo()
+    {
+        _titulo.SetActive(true);
+    }
     //Método para ocultar la pantalla.
     public void OcultarTitulo()
     {
-       // _titulo.SetActive(true);
+
+       _titulo.SetActive(false);
     }
+    
 }

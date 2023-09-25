@@ -407,7 +407,7 @@ MonoBehaviour:
   _imagenQueQueda: {fileID: 1309297926}
   _puntosText: {fileID: 1558444683}
   puntos: 0
-  _titulo: {fileID: 0}
+  _titulo: {fileID: 394484524}
 --- !u!1 &610087222
 GameObject:
   m_ObjectHideFlags: 0
@@ -678,7 +678,7 @@ MonoBehaviour:
   _powerUps:
   - {fileID: 7568033459816306235, guid: 7293232c80fbf7a4082b92c35596bcba, type: 3}
   - {fileID: 5139311628909939266, guid: e9cffd714f27e3f49a7a6166d8faea0b, type: 3}
-  - {fileID: 8229495939122800065, guid: 68e91d2e82bfdc24c9fdd9302ce07007, type: 3}
+  - {fileID: 470910126200503056, guid: b39fafc99848a9f45a95ced858d9b7a6, type: 3}
   _jugadorPrefab: {fileID: 3773894977747978885, guid: e4e16887330ad214bb9e47af25a4fbb9, type: 3}
   game: 0
 --- !u!4 &975047298
