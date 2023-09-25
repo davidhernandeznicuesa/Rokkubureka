@@ -11,6 +11,9 @@ public class Asteroide : MonoBehaviour
     private float _velocidad;
     //Variable para cargar el UIManager.
     private UIManager _uiManager;
+    //Variable para prefab de la explosion
+    [SerializeField]
+    private GameObject _asteroideExplosion;
 
     void Start()
     {
@@ -18,6 +21,7 @@ public class Asteroide : MonoBehaviour
         _velocidad = 2.0f;
         //Cargamos los componentes del UIManager
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
     }
 
     // Update is called once per frame
@@ -37,6 +41,8 @@ public class Asteroide : MonoBehaviour
         //Si colisiona con el laser se destruye.
         if(collision.tag == "Laser")
         {
+            //Creamos la explosión.
+            Instantiate(_asteroideExplosion, transform.position, Quaternion.identity);
             //Destruimos el asteroide
             Destroy(this.gameObject);
             //Comprobar si ha cargado el uiManager.

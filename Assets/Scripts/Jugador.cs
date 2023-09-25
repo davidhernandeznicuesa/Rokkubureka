@@ -51,6 +51,10 @@ public class Jugador : MonoBehaviour
     //Creo una variable de UIManager para acceder a ella.
     private UIManager _uiManager;
 
+    //Variable de tipo sonido para contener el laser.
+    private AudioSource _audioSource;
+
+    
     private void Start()
     {
         this.transform.position = new Vector3(0, -3f, 0);
@@ -75,6 +79,9 @@ public class Jugador : MonoBehaviour
             //llamamos al método de UImanager para mandarle las vidas
             _uiManager.UpdateVidas(vidas);
         }
+        //Cojo el componente de sonido audioSource
+        _audioSource = GetComponent<AudioSource>();
+        
     }    
     void Update()
     {
@@ -139,15 +146,19 @@ public class Jugador : MonoBehaviour
         //Preguntamos si podemos disparar.
         if (Time.time > _puedesDisparar)
         {
+            //Reproducir el audio del disparo.
+            _audioSource.Play();
              //Si no es triple disparo.
             if (_tripleDisparo == false)
             {
+               
                 //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
                 //se coloque y le pongo rotación a 0.
                 Instantiate (_laserPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
             }
             else
             {
+               
                 //Creamos el disparo triple.
                 Instantiate(_tripleDisparoPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
             }     
@@ -160,10 +171,10 @@ public class Jugador : MonoBehaviour
     {
         //Hacemos que el powerup triple disparo se active.
         _tripleDisparo = true;
-//TODO Llamamos a la coroutine y la inicializamos.
+        // Llamamos a la coroutine y la inicializamos.
         StartCoroutine(TripleshotPowerRoutine());
     }
-//TODO Tiempo de espera del triple disparo.
+        // Tiempo de espera del triple disparo.
     public IEnumerator TripleshotPowerRoutine()
     {
         //Establece el nuevo tempo de espera.
@@ -175,10 +186,10 @@ public class Jugador : MonoBehaviour
     {
         //Hacemos que el powerup super velocidad se active.
         _MasVelocidad = true;
-//TODO Llamamos a la coroutine y la inicializamos.
+        // Llamamos a la coroutine y la inicializamos.
         StartCoroutine(SuperVelocidadPowerRoutine());
     }
-    //TODO Tiempo de espera del triple disparo.
+    // Tiempo de espera del triple disparo.
     public IEnumerator SuperVelocidadPowerRoutine()
     {
         //Establece el nuevo tempo de espera.
@@ -193,10 +204,10 @@ public class Jugador : MonoBehaviour
         _escudo = true;
         //Activamos que sea visible el escudo.
         _escudoHijo.SetActive(true);
-        //TODO Llamamos a la coroutine y la inicializamos.
+        // Llamamos a la coroutine y la inicializamos.
         StartCoroutine(EscudoPowerRoutine());
     }
-    //TODO Tiempo de espera del triple disparo.
+    // Tiempo de espera del triple disparo.
     public IEnumerator EscudoPowerRoutine()
     {
         //Establece el nuevo tempo de espera.
@@ -228,11 +239,15 @@ public class Jugador : MonoBehaviour
         {
             //Vuelvo a estar en juego para crear una nueva vida.
             _gameManager.game = true;
+
+            //Mostrar el título.
+            _uiManager.MostrarTitulo();
+            
             //Creamos la explosión.
             Instantiate(_naveExplosion, transform.position, Quaternion.identity);
+
             //Destruimos la nave.
             Destroy(this.gameObject);
-            
         }
     }
 }
