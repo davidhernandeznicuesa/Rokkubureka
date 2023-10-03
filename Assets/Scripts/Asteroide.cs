@@ -11,10 +11,12 @@ public class Asteroide : MonoBehaviour
     private float _velocidad;
     //Variable para cargar el UIManager.
     private UIManager _uiManager;
-    //Variable para prefab de la explosion
+    //Variable para prefab de la explosion del asteroide.
     [SerializeField]
     private GameObject _asteroideExplosion;
-
+    //Variable de tipo sonido para contener el asteroide.
+    [SerializeField]
+    private AudioClip _audioClip;
     void Start()
     {
         //Inicializamos el asteroide.
@@ -37,12 +39,15 @@ public class Asteroide : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         //Debug.Log("Collaider: " + collision.name);
         //Si colisiona con el laser se destruye.
         if(collision.tag == "Laser")
         {
             //Creamos la explosión.
-            Instantiate(_asteroideExplosion, transform.position, Quaternion.identity);
+            Instantiate(_asteroideExplosion, new Vector3(transform.position.x,transform.position.y+0.6f,transform.position.z), Quaternion.identity);
+            //Reproducimos el audio en la poscion de la cámara o si tenemos buen equeipo de sonido en el objeto.
+                AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, 1f);
             //Destruimos el asteroide
             Destroy(this.gameObject);
             //Comprobar si ha cargado el uiManager.
@@ -60,6 +65,10 @@ public class Asteroide : MonoBehaviour
             //Comprobamos si se ha cargado todos los métodos de jugador.
             if (jugador != null)
             {
+                //Reproducimos el audio en la poscion de la cámara o si tenemos buen equeipo de sonido en el objeto.
+                AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, 1f);
+                //Creamos la explosión.
+                Instantiate(_asteroideExplosion, new Vector3(transform.position.x, transform.position.y + 0.6f, transform.position.z), Quaternion.identity);
                 //Llamar al método que le quita una vida.
                 jugador.Damage();
             }

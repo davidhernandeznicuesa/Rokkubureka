@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8756206962926680319}
   - component: {fileID: 8756206962926680304}
   - component: {fileID: -1795995490321563470}
+  - component: {fileID: -9182836809014929455}
   m_Layer: 0
   m_Name: Explosion_Nave_Prefab
   m_TagString: Untagged
@@ -203,3 +204,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-9182836809014929455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8756206962926680305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e93d9d34d482d4bb66664e2f4370c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

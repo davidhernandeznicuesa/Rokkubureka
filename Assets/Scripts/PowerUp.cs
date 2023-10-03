@@ -10,14 +10,14 @@ public class PowerUp : MonoBehaviour
     //Variable para asignar el tipo de PowerUp.
     [SerializeField]
     private int powerUpID; //0 = Diparo triple, 1 = Velocidad, 2 = escudo.
-    //Variable de tipo sonido para contener el laser.
-    private AudioSource _audioSource;
+    //Variable de tipo sonido para contener el powerUp.
+    [SerializeField]
+    private AudioClip _audioClip;
     void Start()
     {
         //Inicializar la velocidad.
         _speed = 2.0f;
-        //Cojo el componente de sonido audioSource
-        _audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -37,11 +37,13 @@ public class PowerUp : MonoBehaviour
         //Debug.Log("Choca con " + collision.name);
         //Creo un objeto de tipo clase Jugador y obtengo todos los métodos(Componentes).
         Jugador jugador = collision.GetComponent<Jugador>();
+        
         //Preguntamos si jugador no está vacío.
         if(jugador != null)
         {
-            //Ejecuto el audio.
-            _audioSource.Play();
+            //Reproducimos el audio en la poscion de la cámara o si tenemos buen equeipo de sonido en el objeto.
+        AudioSource.PlayClipAtPoint(_audioClip, Camera.main.transform.position, 1f);
+
             //Preguntamos si hemos chocado con el powerup de triple disparo.
             if (powerUpID == 0)
             {
@@ -65,8 +67,7 @@ public class PowerUp : MonoBehaviour
                 jugador.EscudoPowerupOn();
             }
         }
-        //Ejecuto el audio.
-        _audioSource.Play();
+        
         //Destruimos el powerUp.
         Destroy(this.gameObject);
     }
