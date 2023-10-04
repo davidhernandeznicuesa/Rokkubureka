@@ -123,15 +123,17 @@ public class Jugador : MonoBehaviour
         //Ponemos los límites de arriba y abajo preguntando cada límite por separado y lo reubicamos
         //en la posición de Y y mantenemos en la que esté en X.
         }
-       
+       //Arriba
         if (transform.position.y > 1.60f)
         {
+            //posición x, le mantengo la posición y.
             transform.position = new Vector3(transform.position.x, 1.60f, 0);
         }
         else if (transform.position.y < -3.65f)
         {
             transform.position = new Vector3(transform.position.x, -3.65f, 0);
         }
+        //Laterales
         if (transform.position.x > 6.60f)
         {
             transform.position = new Vector3( 6.60f, transform.position.y, 0);
