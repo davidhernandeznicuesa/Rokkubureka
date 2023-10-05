@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7568033459816306234}
   - component: {fileID: 2393104654278487737}
   - component: {fileID: 2448083179445855878}
-  m_Layer: 2
+  m_Layer: 3
   m_Name: PowerUp_TripleDisparo
   m_TagString: PowerUp
   m_Icon: {fileID: 0}

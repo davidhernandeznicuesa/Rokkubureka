@@ -25,6 +25,9 @@ public class UIManager : MonoBehaviour
     //Varible tipo imagen para el titulo.
     [SerializeField]
     private GameObject _titulo;
+    //Varible tipo imagen para el titulo.
+    [SerializeField]
+    private GameObject _fondo;
 
     // Start is called before the first frame update
     void Start()
@@ -60,12 +63,14 @@ public class UIManager : MonoBehaviour
     {
         //Mostrar imagen.
         _titulo.SetActive(true);
+        _fondo.SetActive(true);
     }
     //Método para ocultar la pantalla.
     public void OcultarTitulo()
     {
         //Oculta imagen.
        _titulo.SetActive(false);
+        _fondo.SetActive(false);
     }
     
 }
