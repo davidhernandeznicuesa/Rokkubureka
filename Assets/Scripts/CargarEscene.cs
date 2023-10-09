@@ -8,9 +8,14 @@ using UnityEngine.SceneManagement;
 
 public class CargarEscene : MonoBehaviour
 {
-
-   public void Cargarescena()
+    //Carga escenas
+    public void Cargarescena(string NombreEscena)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(NombreEscena);
+    }
+    //Cierra aplicación.
+    public void CerrarAplicacion()
+    {
+        Application.Quit();
     }
 }

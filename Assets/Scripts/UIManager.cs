@@ -66,11 +66,11 @@ public class UIManager : MonoBehaviour
         _fondo.SetActive(true);
     }
     //Método para ocultar la pantalla.
-    public void OcultarTitulo()
-    {
-        //Oculta imagen.
-       _titulo.SetActive(false);
-        _fondo.SetActive(false);
-    }
+    //public void OcultarTitulo()
+    //{
+    //    //Oculta imagen.
+    //   _titulo.SetActive(false);
+    //    _fondo.SetActive(false);
+    //}
     
 }

@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
         //Preguntamos si estamos jugando.
         if (game == true)
         {
-            //Si presione la tecla Espacio creo una nueva nave.
-            if (Input.GetKeyDown(KeyCode.J))
-            {
+            //Si presione la tecla JOTA creo una nueva nave.
+            //if (Input.GetKeyDown(KeyCode.J))
+            //{
                 //Creamos el jugador
                 Instantiate(_jugadorPrefab, Vector3.zero, Quaternion.identity);
                 
@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
                 game = false;
 
                 //Llamamos a la función que nos oculta el panel de inicio de jugador.
-                _uIManager.OcultarTitulo();
-            }
+            //    _uIManager.OcultarTitulo();
+            //}
 
         }
     }
