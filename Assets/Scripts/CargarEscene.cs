@@ -13,7 +13,7 @@ public class CargarEscene : MonoBehaviour
     {
         SceneManager.LoadScene(NombreEscena);
     }
-    //Cierra aplicación.
+    //Cierra aplicación compilada.
     public void CerrarAplicacion()
     {
         Application.Quit();
