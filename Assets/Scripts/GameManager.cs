@@ -68,12 +68,12 @@ public class GameManager : MonoBehaviour
     // Para controlar el tiempo con la corrutina
     IEnumerator PowerUp()
     {
-        //Creo un bucle que va a ir creando los asteroides.
+        //Creo un bucle que va a ir creando los powerup.
         while (true)
         {
-            //Creo el asteroide.
+            //Creo el powerup.
             Instantiate(_powerUps[Random.Range(0,3)], new Vector3(Random.Range(-6.3f, 6.3f), 5.8f, 0), Quaternion.identity);
-            //Darle el tiempo entre uno y otro asteroide.
+            //Darle el tiempo entre uno y otro powerup.
             yield return new WaitForSeconds(5f);
         }
     }
