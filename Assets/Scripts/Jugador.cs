@@ -90,7 +90,7 @@ public class Jugador : MonoBehaviour
         if(Time.time > _puedesDisparar)
         {
             //Se coloca la tecla Zeta porque el space se bloquea con las fecha drcha y abajo
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) 
+            if (Input.GetKeyDown(KeyCode.Space) || SimpleInput.GetMouseButtonDown(0)) 
             {
                 //Llamar a Disparo.
                 Disparo();
@@ -99,10 +99,14 @@ public class Jugador : MonoBehaviour
     }
     public void Movimiento()
     {
+        ////Cargamos la variable con el eje horizontal.
+        //horizontalInput = Input.GetAxis("Horizontal");
+        ////Cargamos la variable con el eje vertical.
+        //verticalInput = Input.GetAxis("Vertical");
         //Cargamos la variable con el eje horizontal.
-        horizontalInput = Input.GetAxis("Horizontal");
-        //Cargamos la variable con el eje vertical.
-        verticalInput = Input.GetAxis("Vertical");
+        horizontalInput = SimpleInput.GetAxis("Horizontal");
+        ////Cargamos la variable con el eje vertical.
+        verticalInput = SimpleInput.GetAxis("Vertical");
 
         if (_MasVelocidad == true)
         {
