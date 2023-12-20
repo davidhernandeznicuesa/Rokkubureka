@@ -1113,6 +1113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoystickMove
       objectReference: {fileID: 0}
+    - target: {fileID: 1531213445540486, guid: e0815e227ed46e445b99930271e8942c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114592483299003616, guid: e0815e227ed46e445b99930271e8942c, type: 3}
       propertyPath: m_Type
       value: 0
@@ -1249,7 +1253,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1188476836
 RectTransform:
   m_ObjectHideFlags: 0
