@@ -87,16 +87,16 @@ public class Jugador : MonoBehaviour
     {
         Movimiento();
         //Preguntamos si podemos disparar.
-        if(Time.time > _puedesDisparar)
+        if (Time.time > _puedesDisparar)
         {
             //Se coloca la tecla Zeta porque el space se bloquea con las fecha drcha y abajo
-            if (Input.GetKeyDown(KeyCode.Space) || SimpleInput.GetMouseButtonDown(0)) 
+            if (Input.GetKeyDown(KeyCode.Space) || SimpleInput.GetButtonDown("Fire1"))
             {
                 //Llamar a Disparo.
                 Disparo();
-            }   
+                }   
+            }
         }
-    }
     public void Movimiento()
     {
         ////Cargamos la variable con el eje horizontal.
@@ -157,7 +157,7 @@ public class Jugador : MonoBehaviour
              //Si no es triple disparo.
             if (_tripleDisparo == false)
             {
-               
+                print("Hola");
                 //Crear el objeto(cojo el objeto,cojo la posición de la nave y le sumo un vector para que
                 //se coloque y le pongo rotación a 0.
                 Instantiate (_laserPrefab, transform.position + new Vector3(0, 0.65f, 0), Quaternion.identity);
